@@ -5,8 +5,14 @@ import { useState } from "react";
 import { Selected } from "../Selected";
 import { router } from "expo-router";
 
-export function IngredientsList() {
+type IngredientsListProps = {
+  ingredients: IngredientResponse[]
+}
+
+export function IngredientsList({ ingredients }: IngredientsListProps) {
   const [selected, setSelected] = useState<string[]>([])
+
+  console.log('first', ingredients)
 
   function handleToggleSelected(value: string) {
     if(selected.includes(value)) {
@@ -32,9 +38,13 @@ export function IngredientsList() {
     <ScrollView contentContainerStyle={styles.container}  showsVerticalScrollIndicator={false}  >
 
       {
-        Array.from({ length: 100 }).map((item, index) => (
-          <Ingredient key={index} name='Maçã' image='' selected={selected.includes(String(index))}
-            onPress={() => handleToggleSelected(String(index))}
+        ingredients.map((item) => (
+          <Ingredient 
+            key={item.id} 
+            name={item.name} 
+            image={item.image} 
+            selected={selected.includes(item.id)}
+            onPress={() => handleToggleSelected(item.id)}
           />
         ))
       }
