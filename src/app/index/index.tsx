@@ -8,7 +8,7 @@ export default function Index() {
   const [ingredients, setIngredients] = useState<IngredientResponse[]>([])
 
   useEffect(() => {
-    services.ingredtients.findAll().then(setIngredients)
+    services.ingredients.findAll().then(setIngredients)
   }, [])
   
   return(

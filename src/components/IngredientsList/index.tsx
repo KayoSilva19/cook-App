@@ -12,8 +12,6 @@ type IngredientsListProps = {
 export function IngredientsList({ ingredients }: IngredientsListProps) {
   const [selected, setSelected] = useState<string[]>([])
 
-  console.log('first', ingredients)
-
   function handleToggleSelected(value: string) {
     if(selected.includes(value)) {
       return setSelected((state) => state.filter((item) => item !== value))
@@ -30,13 +28,12 @@ export function IngredientsList({ ingredients }: IngredientsListProps) {
   }
 
   function handleSearch() {
-    router.navigate('/recipes')
+    router.navigate('/recipes/' + selected)
   }
 
   return (
   <>
     <ScrollView contentContainerStyle={styles.container}  showsVerticalScrollIndicator={false}  >
-
       {
         ingredients.map((item) => (
           <Ingredient 
